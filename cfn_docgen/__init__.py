@@ -131,10 +131,23 @@ class RemoteSource:
 
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-r", "--root", type=Path, required=False)
+    parser = argparse.ArgumentParser(
+        description="Generate CloudFormation return value options from the documentation"
+    )
     parser.add_argument(
-        "-o", "--output", required=False, default="-", type=argparse.FileType("w")
+        "-r",
+        "--root",
+        type=Path,
+        required=False,
+        help="Path to a local checkout of the documentation (saves using git to fetch the source)",
+    )
+    parser.add_argument(
+        "-o",
+        "--output",
+        required=False,
+        default="-",
+        type=argparse.FileType("w"),
+        help="Output to write the results to (as JSON, defaults to stdout)",
     )
     args = parser.parse_args()
 
